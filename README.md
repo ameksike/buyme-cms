@@ -4,6 +4,13 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 
 ## Installl
 - npx create-strapi@latest
+- docker-compose up
+- npm install strapi-provider-cloudflare-r2 --save
+
+## Run
+- npm run develop
+- GET http://localhost:1337/admin
+- GET http://localhost:1337/api/categories
 
 ## References 
 - [NVM](https://github.com/coreybutler/nvm-windows/releases)
@@ -15,6 +22,11 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - [Strapi](https://docs.strapi.io/dev-docs/quick-start)
     - [Installing from CLI](https://docs.strapi.io/dev-docs/installation/cli)
     - [Installing from Docker](https://docs.strapi.io/dev-docs/installation/docker)
+    - [REST API](https://docs.strapi.io/dev-docs/api/rest)
+    - [Cloudflare R2](https://market.strapi.io/providers/strapi-provider-cloudflare-r2)
+    - [How to Add an External Database to Strapi Cloud - Step by Step Tutorial](https://www.youtube.com/watch?v=g7hzv0uHHMo&list=PL7Q0DQYATmvgIDkszYY4EPvI8FXEbGgip&index=6)
+    - [Strapi Gatsby Tutorial #5 - Installing Cloudinary Plugin for Strapi](https://www.youtube.com/watch?v=L15BAmxbbM4&list=PLVoKTq3-H4pjUy7hfCB0Ei1QBSnevxfhI&index=6)
+    - [Using Strapi With Supabase Deployed To Render](https://www.youtube.com/watch?v=vndfVnRPcgk)
 
 ### `develop`
 

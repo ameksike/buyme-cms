@@ -6,10 +6,13 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - npx create-strapi@latest
 - docker-compose up
 - npm install strapi-provider-cloudflare-r2 --save
+- npm install @strapi/provider-upload-cloudinary
 - npm install pg --save
+- npm install @strapi/plugin-graphql
 
 ## Run
 - npm run develop
+- GET http://localhost:1337/graphql
 - GET http://localhost:1337/admin
 - GET http://localhost:1337/api/categories
 

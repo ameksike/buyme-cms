@@ -1,29 +1,42 @@
-export default ({ env }) => ({
-    upload: {
+const {
+    FILE_PROVIDER = "cloudinary",
+    CLOUDINARY_NAME,
+    CLOUDINARY_KEY,
+    CLOUDINARY_SECRET,
+    CF_PUBLIC_ACCESS_URL,
+    CF_ACCESS_KEY_ID,
+    CF_ACCESS_SECRET,
+    CF_ENDPOINT,
+    CF_BUCKET
+} = process.env;
+
+const cloud = {
+    cloudinary: {
+        config: {
+            provider: "cloudinary",
+            providerOptions: {
+                cloud_name: CLOUDINARY_NAME,
+                api_key: CLOUDINARY_KEY,
+                api_secret: CLOUDINARY_SECRET
+            },
+            actionOptions: {
+                upload: {},
+                uploadStream: {},
+                delete: {},
+            }
+        }
+    },
+    cloudflare: {
         config: {
             provider: "strapi-provider-cloudflare-r2",
             providerOptions: {
-                accessKeyId: env("CF_ACCESS_KEY_ID"),
-                secretAccessKey: env("CF_ACCESS_SECRET"),
-                /**
-                 * `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
-                 */
-                endpoint: env("CF_ENDPOINT"),
+                accessKeyId: CF_ACCESS_KEY_ID,
+                secretAccessKey: CF_ACCESS_SECRET,
+                endpoint: CF_ENDPOINT,
                 params: {
-                    Bucket: env("CF_BUCKET"),
+                    Bucket: CF_BUCKET,
                 },
-                /**
-                 * Set this Option to store the CDN URL of your files and not the R2 endpoint URL in your DB.
-                 * Can be used in Cloudflare R2 with Domain-Access or Public URL: https://pub-<YOUR_PULIC_BUCKET_ID>.r2.dev
-                 * This option is required to upload files larger than 5MB, and is highly recommended to be set.
-                 * Check the cloudflare docs for the setup: https://developers.cloudflare.com/r2/data-access/public-buckets/#enable-public-access-for-your-bucket
-                 */
-                cloudflarePublicAccessUrl: env("CF_PUBLIC_ACCESS_URL"),
-                /**
-                 * Sets if all assets should be uploaded in the root dir regardless the strapi folder.
-                 * It is useful because strapi sets folder names with numbers, not by user's input folder name
-                 * By default it is false
-                 */
+                cloudflarePublicAccessUrl: CF_PUBLIC_ACCESS_URL,
                 pool: false,
             },
             actionOptions: {
@@ -33,4 +46,16 @@ export default ({ env }) => ({
             },
         },
     }
+};
+
+const upload = (cloud[FILE_PROVIDER] || cloud.cloudflare);
+
+console.log({
+    name: "provider",
+    required: FILE_PROVIDER,
+    loaded: upload?.config?.provider
+});
+
+export default () => ({
+    upload
 });

@@ -6,6 +6,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - npx create-strapi@latest
 - docker-compose up
 - npm install strapi-provider-cloudflare-r2 --save
+- npm install pg --save
 
 ## Run
 - npm run develop

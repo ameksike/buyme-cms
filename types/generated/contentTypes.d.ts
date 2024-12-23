@@ -914,7 +914,8 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    code: Schema.Attribute.String &
+    code: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1066,7 +1067,7 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
-    code: Schema.Attribute.String &
+    code: Schema.Attribute.UID<'name'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1257,6 +1258,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
   collectionName: 'purchases';
   info: {
+    description: '';
     displayName: 'Purchase';
     pluralName: 'purchases';
     singularName: 'purchase';
@@ -1271,7 +1273,7 @@ export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
   };
   attributes: {
     agent: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-    code: Schema.Attribute.String &
+    code: Schema.Attribute.UID<'name'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1330,7 +1332,7 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
   attributes: {
     address: Schema.Attribute.Relation<'oneToOne', 'api::address.address'>;
     agent: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-    code: Schema.Attribute.String &
+    code: Schema.Attribute.UID<'name'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1379,6 +1381,7 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
 export interface ApiStateState extends Struct.CollectionTypeSchema {
   collectionName: 'states';
   info: {
+    description: '';
     displayName: 'State';
     pluralName: 'states';
     singularName: 'state';
@@ -1392,6 +1395,13 @@ export interface ApiStateState extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    code: Schema.Attribute.UID<'note'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

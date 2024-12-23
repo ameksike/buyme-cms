@@ -4,7 +4,8 @@
   "info": {
     "singularName": "state",
     "pluralName": "states",
-    "displayName": "State"
+    "displayName": "State",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -60,6 +61,16 @@
       "relation": "manyToOne",
       "target": "api::shipping.shipping",
       "inversedBy": "states"
+    },
+    "code": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "note",
+      "required": true
     }
   }
 }

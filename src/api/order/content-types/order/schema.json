@@ -145,14 +145,6 @@
       ],
       "default": "Centimeters (cm)"
     },
-    "code": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "note": {
       "pluginOptions": {
         "i18n": {
@@ -203,6 +195,16 @@
       },
       "type": "decimal",
       "default": 0
+    },
+    "code": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
     }
   }
 }

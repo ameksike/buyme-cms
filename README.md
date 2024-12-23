@@ -31,7 +31,10 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - [How to Add an External Database to Strapi Cloud - Step by Step Tutorial](https://www.youtube.com/watch?v=g7hzv0uHHMo&list=PL7Q0DQYATmvgIDkszYY4EPvI8FXEbGgip&index=6)
     - [Strapi Gatsby Tutorial #5 - Installing Cloudinary Plugin for Strapi](https://www.youtube.com/watch?v=L15BAmxbbM4&list=PLVoKTq3-H4pjUy7hfCB0Ei1QBSnevxfhI&index=6)
     - [Using Strapi With Supabase Deployed To Render](https://www.youtube.com/watch?v=vndfVnRPcgk)
-
+    - [DB: Data transfer](https://docs.strapi.io/dev-docs/data-management/transfer)
+- E-Commerce
+    - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
+    - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)
 ### `develop`
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)

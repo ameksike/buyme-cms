@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USD",
+        "EUR",
+        "MLC",
+        "CUP"
+      ]
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Debit",
+        "Credit"
+      ],
+      "default": "Debit",
+      "required": true
+    },
+    "note": {
+      "type": "text"
+    },
+    "User": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "rate": {
+      "type": "decimal"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Other",
+        "Debt",
+        "Pay",
+        "Food",
+        "Ticket",
+        "Airport",
+        "Rapping",
+        "Transport",
+        "Taxi",
+        "Uber"
+      ],
+      "default": "Other"
+    },
+    "purchases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::purchase.purchase",
+      "mappedBy": "transactions"
+    },
+    "shippings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::shipping.shipping",
+      "mappedBy": "transactions"
+    }
+  }
+}

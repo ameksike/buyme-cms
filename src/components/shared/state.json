@@ -11,13 +11,18 @@
       "type": "enumeration",
       "enum": [
         "Requested",
+        "Negotiating",
+        "Pending",
+        "Blocked",
         "Prepared",
         "Processed",
         "Sent",
         "Received",
         "Ready",
         "Delivered"
-      ]
+      ],
+      "default": "Requested",
+      "required": true
     },
     "note": {
       "type": "text"

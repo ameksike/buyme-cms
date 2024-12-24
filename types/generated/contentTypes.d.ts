@@ -1315,16 +1315,18 @@ export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
       }>;
     orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     publishedAt: Schema.Attribute.DateTime;
-    State: Schema.Attribute.Component<'shared.state', true> &
+    state: Schema.Attribute.Component<'shared.state', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    transactions: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::transaction.transaction'
-    >;
+    transactions: Schema.Attribute.Component<'shared.ops', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1385,16 +1387,18 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
       }>;
     packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
     publishedAt: Schema.Attribute.DateTime;
-    State: Schema.Attribute.Component<'shared.state', true> &
+    state: Schema.Attribute.Component<'shared.state', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    transactions: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::transaction.transaction'
-    >;
+    transactions: Schema.Attribute.Component<'shared.ops', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1474,6 +1478,7 @@ export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
 export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
   collectionName: 'transactions';
   info: {
+    description: '';
     displayName: 'Transaction';
     pluralName: 'transactions';
     singularName: 'transaction';
@@ -1500,7 +1505,8 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    currency: Schema.Attribute.Enumeration<['USD', 'EUR', 'MLC', 'CUP']>;
+    currency: Schema.Attribute.Enumeration<['USD', 'EUR', 'MLC', 'CUP']> &
+      Schema.Attribute.DefaultTo<'USD'>;
     date: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1508,18 +1514,19 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
       'api::transaction.transaction'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'DEB-01'>;
     note: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
-    purchases: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::purchase.purchase'
-    >;
-    rate: Schema.Attribute.Decimal;
-    shippings: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::shipping.shipping'
-    >;
+    rate: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     type: Schema.Attribute.Enumeration<['Debit', 'Credit']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Debit'>;
@@ -1530,7 +1537,14 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    value: Schema.Attribute.Decimal;
+    value: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
   };
 }
 

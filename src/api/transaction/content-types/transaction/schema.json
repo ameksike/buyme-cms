@@ -4,7 +4,8 @@
   "info": {
     "singularName": "transaction",
     "pluralName": "transactions",
-    "displayName": "Transaction"
+    "displayName": "Transaction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,10 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "default": "DEB-01"
     },
     "value": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true,
+      "min": 0
     },
     "currency": {
       "type": "enumeration",
@@ -24,7 +29,8 @@
         "EUR",
         "MLC",
         "CUP"
-      ]
+      ],
+      "default": "USD"
     },
     "date": {
       "type": "datetime"
@@ -47,7 +53,9 @@
       "target": "plugin::users-permissions.user"
     },
     "rate": {
-      "type": "decimal"
+      "type": "decimal",
+      "default": 1,
+      "min": 1
     },
     "category": {
       "type": "enumeration",
@@ -64,18 +72,6 @@
         "Uber"
       ],
       "default": "Other"
-    },
-    "purchases": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::purchase.purchase",
-      "mappedBy": "transactions"
-    },
-    "shippings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::shipping.shipping",
-      "mappedBy": "transactions"
     }
   }
 }

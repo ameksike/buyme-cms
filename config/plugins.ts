@@ -1,5 +1,4 @@
 const {
-    FILE_PROVIDER = "cloudinary",
     CLOUDINARY_NAME,
     CLOUDINARY_KEY,
     CLOUDINARY_SECRET,
@@ -8,7 +7,9 @@ const {
     CF_ACCESS_SECRET,
     CF_ENDPOINT,
     CF_BUCKET,
-    PLUGIN_KSVIRT = false
+    PLUGIN_UPLOAD = "cloudinary",
+    PLUGIN_KSVIRT = false,
+    PLUGIN_REMOTE = false,
 } = process.env;
 
 const cloud = {
@@ -49,11 +50,11 @@ const cloud = {
     }
 };
 
-const upload = (cloud[FILE_PROVIDER] || cloud.cloudflare);
+const upload = (cloud[PLUGIN_UPLOAD] || cloud.cloudflare);
 
 console.log({
     name: "provider",
-    required: FILE_PROVIDER,
+    required: PLUGIN_UPLOAD,
     loaded: upload?.config?.provider
 });
 
@@ -67,6 +68,12 @@ if (PLUGIN_KSVIRT) {
     plugins["ksvirt"] = {
         enabled: true,
         resolve: "./src/plugins/ksvirt",
+    };
+}
+
+if (PLUGIN_REMOTE) {
+    plugins['remote-select'] = {
+        enabled: true,
     };
 }
 

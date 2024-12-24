@@ -9,6 +9,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - npm install @strapi/provider-upload-cloudinary
 - npm install pg --save
 - npm install @strapi/plugin-graphql
+- npm install strapi-plugin-remote-select
 
 ## Run
 - npm run develop
@@ -39,11 +40,14 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - Frontend:
         - [How To Build A Menu In Strapi](https://www.youtube.com/watch?v=sp-vqDWG9Y4&list=PL7Q0DQYATmvhlHxHqfKHsr-zFls2mIVTi)
         - [Dynamic Zones](https://www.youtube.com/watch?v=YhEVIGzJD1Y&list=PLh0b_kWrKDf84aIbQ0mcjnfgfgUJrVjPg)
+        - [How To Structure Your Landing Page Data in Strapi | Step-by-Step Tutorial](https://www.youtube.com/watch?v=npRO9IeCeN4)
+        - [Visually build pages with Strapi content in Plasmic](https://www.youtube.com/watch?v=1SLoVY3hkQ4)
     - Server
         - [REST API](https://docs.strapi.io/dev-docs/api/rest)
     - Plugins
         - [How to build a Strapi plugin](https://www.youtube.com/watch?v=ZErV3aNdYhY)
         - [Plugin creation](https://docs.strapi.io/dev-docs/plugins/development/create-a-plugin)    
+        - [Building Plugins for Strapi v4](https://www.youtube.com/playlist?list=PL7Q0DQYATmvjd5D57P8CN0_xp_HsRd3wn)
         - [How To Build Your First Strapi 5 Plugin](https://strapi.io/blog/how-to-build-your-first-strapi-5-plugin)
         - [How to create a Strapi v4 plugin: Admin customization 5/6](https://strapi.io/blog/how-to-create-a-strapi-v4-plugin-admin-customization-5-6)
         - [Admin Panel API for plugins](https://docs.strapi.io/dev-docs/plugins/admin-panel-api)
@@ -53,6 +57,8 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - E-Commerce
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)
+    - [Full Stack Ecommerce Store With Admin Dashboard From Scratch - Next.js, Prisma, Stripe, Tailwind](https://www.youtube.com/watch?v=iqrgggs0Qk0)
+    - [Build and Deploy a React Admin Dashboard With Real time Data, Charts, Events, Kanban, CRM, and More](https://www.youtube.com/watch?v=6a3Dz8gwjdg)
 
 
 ### Overwriting 

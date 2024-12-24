@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_virtuals",
+  "info": {
+    "displayName": "virtual",
+    "icon": "collapse"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

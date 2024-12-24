@@ -157,6 +157,16 @@
       },
       "type": "uid",
       "targetField": "name"
+    },
+    "state": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.state"
     }
   }
 }

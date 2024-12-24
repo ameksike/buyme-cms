@@ -205,6 +205,16 @@
       "type": "uid",
       "required": true,
       "targetField": "name"
+    },
+    "state": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.state"
     }
   }
 }

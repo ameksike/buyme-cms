@@ -32,9 +32,49 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - [Strapi Gatsby Tutorial #5 - Installing Cloudinary Plugin for Strapi](https://www.youtube.com/watch?v=L15BAmxbbM4&list=PLVoKTq3-H4pjUy7hfCB0Ei1QBSnevxfhI&index=6)
     - [Using Strapi With Supabase Deployed To Render](https://www.youtube.com/watch?v=vndfVnRPcgk)
     - [DB: Data transfer](https://docs.strapi.io/dev-docs/data-management/transfer)
+    - [How To Build A Menu In Strapi](https://www.youtube.com/watch?v=sp-vqDWG9Y4&list=PL7Q0DQYATmvhlHxHqfKHsr-zFls2mIVTi)
+    - [How to build a Strapi plugin](https://www.youtube.com/watch?v=ZErV3aNdYhY)
+        - [Plugin creation](https://docs.strapi.io/dev-docs/plugins/development/create-a-plugin)    
+        - [How To Build Your First Strapi 5 Plugin](https://strapi.io/blog/how-to-build-your-first-strapi-5-plugin)
+        - [Admin Panel API for plugins](https://docs.strapi.io/dev-docs/plugins/admin-panel-api)
+        - [SDK Plugin](https://github.com/strapi/sdk-plugin)
 - E-Commerce
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)
+
+
+### Overwriting 
+
+File: `src\api\order\services\order.ts`
+
+```ts
+import { factories } from '@strapi/strapi';
+
+function fill(result) {
+    try {
+        result.profit = result.charged - result.costReal;
+        result.discount = result.cost - result.costReal;
+        return result;
+    }
+    catch (_) {
+        return result;
+    }
+}
+
+export default factories.createCoreService('api::order.order', ({ strapi }) => ({
+    async find(...args) {
+        const { results, pagination } = await super.find(...args);
+        results.forEach(result => fill(result));
+        return { results, pagination };
+    },
+    async findOne(documentId, params) {
+        const result = await super.findOne(documentId, params);
+        return fill(result);
+    },
+}));
+```
+
+
 ### `develop`
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)

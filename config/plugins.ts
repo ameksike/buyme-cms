@@ -7,7 +7,8 @@ const {
     CF_ACCESS_KEY_ID,
     CF_ACCESS_SECRET,
     CF_ENDPOINT,
-    CF_BUCKET
+    CF_BUCKET,
+    PLUGIN_KSVIRT = false
 } = process.env;
 
 const cloud = {
@@ -56,10 +57,17 @@ console.log({
     loaded: upload?.config?.provider
 });
 
-export default () => ({
-    upload,
-    "ksvirt": {
+const plugins = {};
+
+if (upload) {
+    plugins["upload"] = upload;
+}
+
+if (PLUGIN_KSVIRT) {
+    plugins["ksvirt"] = {
         enabled: true,
         resolve: "./src/plugins/ksvirt",
-    }
-});
+    };
+}
+
+export default () => (plugins);

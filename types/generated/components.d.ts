@@ -62,6 +62,47 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedState extends Struct.ComponentSchema {
+  collectionName: 'components_shared_states';
+  info: {
+    description: '';
+    displayName: 'State';
+    icon: 'bulletList';
+  };
+  attributes: {
+    attachments: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    date: Schema.Attribute.DateTime;
+    note: Schema.Attribute.Text;
+    value: Schema.Attribute.Enumeration<
+      [
+        'Requested',
+        'Prepared',
+        'Processed',
+        'Sent',
+        'Received',
+        'Ready',
+        'Delivered',
+      ]
+    >;
+  };
+}
+
+export interface SharedVirtual extends Struct.ComponentSchema {
+  collectionName: 'components_shared_virtuals';
+  info: {
+    displayName: 'virtual';
+    icon: 'collapse';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -70,6 +111,8 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.state': SharedState;
+      'shared.virtual': SharedVirtual;
     }
   }
 }

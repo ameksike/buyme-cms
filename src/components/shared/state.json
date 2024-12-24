@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_shared_states",
+  "info": {
+    "displayName": "State",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "enumeration",
+      "enum": [
+        "Requested",
+        "Prepared",
+        "Processed",
+        "Sent",
+        "Received",
+        "Ready",
+        "Delivered"
+      ]
+    },
+    "note": {
+      "type": "text"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

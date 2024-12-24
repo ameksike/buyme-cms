@@ -702,6 +702,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'api::article.article'
     > &
       Schema.Attribute.Private;
+    pro: Schema.Attribute.Component<'shared.virtual', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
@@ -1003,6 +1004,12 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'Centimeters (cm)'>;
+    state: Schema.Attribute.Component<'shared.state', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     supplier: Schema.Attribute.Relation<'oneToOne', 'api::supplier.supplier'>;
     tax: Schema.Attribute.Decimal &
       Schema.Attribute.SetPluginOptions<{
@@ -1132,6 +1139,12 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'Centimeters (cm)'>;
+    state: Schema.Attribute.Component<'shared.state', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1302,7 +1315,12 @@ export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
       }>;
     orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     publishedAt: Schema.Attribute.DateTime;
-    states: Schema.Attribute.Relation<'oneToMany', 'api::state.state'>;
+    State: Schema.Attribute.Component<'shared.state', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     transactions: Schema.Attribute.Relation<
       'manyToMany',
       'api::transaction.transaction'
@@ -1367,78 +1385,16 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
       }>;
     packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
     publishedAt: Schema.Attribute.DateTime;
-    states: Schema.Attribute.Relation<'oneToMany', 'api::state.state'>;
+    State: Schema.Attribute.Component<'shared.state', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     transactions: Schema.Attribute.Relation<
       'manyToMany',
       'api::transaction.transaction'
     >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiStateState extends Struct.CollectionTypeSchema {
-  collectionName: 'states';
-  info: {
-    description: '';
-    displayName: 'State';
-    pluralName: 'states';
-    singularName: 'state';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    code: Schema.Attribute.UID<'note'> &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::state.state'>;
-    name: Schema.Attribute.Enumeration<
-      [
-        'Requested',
-        'Prepared',
-        'Processed',
-        'Sent',
-        'Received',
-        'Ready',
-        'Delivered',
-      ]
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    note: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    purchase: Schema.Attribute.Relation<'manyToOne', 'api::purchase.purchase'>;
-    shipping: Schema.Attribute.Relation<'manyToOne', 'api::shipping.shipping'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2307,7 +2263,6 @@ declare module '@strapi/strapi' {
       'api::product.product': ApiProductProduct;
       'api::purchase.purchase': ApiPurchasePurchase;
       'api::shipping.shipping': ApiShippingShipping;
-      'api::state.state': ApiStateState;
       'api::supplier.supplier': ApiSupplierSupplier;
       'api::transaction.transaction': ApiTransactionTransaction;
       'plugin::content-releases.release': PluginContentReleasesRelease;

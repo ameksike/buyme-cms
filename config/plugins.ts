@@ -57,5 +57,9 @@ console.log({
 });
 
 export default () => ({
-    upload
+    upload,
+    "ksvirt": {
+        enabled: true,
+        resolve: "./src/plugins/ksvirt",
+    }
 });

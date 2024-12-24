@@ -63,12 +63,6 @@
       "target": "api::package.package",
       "mappedBy": "shipping"
     },
-    "states": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::state.state",
-      "mappedBy": "shipping"
-    },
     "code": {
       "pluginOptions": {
         "i18n": {
@@ -77,6 +71,16 @@
       },
       "type": "uid",
       "targetField": "name"
+    },
+    "State": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.state"
     }
   }
 }

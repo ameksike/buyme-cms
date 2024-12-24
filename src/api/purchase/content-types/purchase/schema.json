@@ -50,12 +50,6 @@
       "target": "api::transaction.transaction",
       "inversedBy": "purchases"
     },
-    "states": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::state.state",
-      "mappedBy": "purchase"
-    },
     "code": {
       "pluginOptions": {
         "i18n": {
@@ -64,6 +58,16 @@
       },
       "type": "uid",
       "targetField": "name"
+    },
+    "State": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.state"
     }
   }
 }

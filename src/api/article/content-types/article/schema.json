@@ -53,6 +53,11 @@
         "shared.rich-text",
         "shared.slider"
       ]
+    },
+    "pro": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.virtual"
     }
   }
 }

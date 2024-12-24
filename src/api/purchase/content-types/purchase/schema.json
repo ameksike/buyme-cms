@@ -44,12 +44,6 @@
       "target": "api::order.order",
       "mappedBy": "purchase"
     },
-    "transactions": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::transaction.transaction",
-      "inversedBy": "purchases"
-    },
     "code": {
       "pluginOptions": {
         "i18n": {
@@ -59,7 +53,7 @@
       "type": "uid",
       "targetField": "name"
     },
-    "State": {
+    "state": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -68,6 +62,16 @@
         }
       },
       "component": "shared.state"
+    },
+    "transactions": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.ops"
     }
   }
 }

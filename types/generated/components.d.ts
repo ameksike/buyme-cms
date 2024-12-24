@@ -11,6 +11,55 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedOps extends Struct.ComponentSchema {
+  collectionName: 'components_shared_ops';
+  info: {
+    displayName: 'Ops';
+    icon: 'hashtag';
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      [
+        'Other',
+        'Debt',
+        'Pay',
+        'Food',
+        'Ticket',
+        'Airport',
+        'Rapping',
+        'Transport',
+        'Taxi',
+        'Uber',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Other'>;
+    currency: Schema.Attribute.Enumeration<['USD', 'EUR', 'MLC', 'CUP']> &
+      Schema.Attribute.DefaultTo<'USD'>;
+    date: Schema.Attribute.DateTime;
+    name: Schema.Attribute.String;
+    note: Schema.Attribute.Text;
+    rate: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
+    type: Schema.Attribute.Enumeration<['Debit', 'Credit']> &
+      Schema.Attribute.DefaultTo<'Debit'>;
+    value: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+  };
+}
+
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -79,6 +128,9 @@ export interface SharedState extends Struct.ComponentSchema {
     value: Schema.Attribute.Enumeration<
       [
         'Requested',
+        'Negotiating',
+        'Pending',
+        'Blocked',
         'Prepared',
         'Processed',
         'Sent',
@@ -86,7 +138,9 @@ export interface SharedState extends Struct.ComponentSchema {
         'Ready',
         'Delivered',
       ]
-    >;
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Requested'>;
   };
 }
 
@@ -107,6 +161,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.media': SharedMedia;
+      'shared.ops': SharedOps;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;

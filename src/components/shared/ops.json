@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_shared_ops",
+  "info": {
+    "displayName": "Ops",
+    "icon": "hashtag"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "required": true
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USD",
+        "EUR",
+        "MLC",
+        "CUP"
+      ],
+      "default": "USD"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Debit",
+        "Credit"
+      ],
+      "default": "Debit"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Other",
+        "Debt",
+        "Pay",
+        "Food",
+        "Ticket",
+        "Airport",
+        "Rapping",
+        "Transport",
+        "Taxi",
+        "Uber"
+      ],
+      "default": "Other"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "rate": {
+      "type": "decimal",
+      "default": 1,
+      "min": 1
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}

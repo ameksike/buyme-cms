@@ -44,6 +44,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [Visually build pages with Strapi content in Plasmic](https://www.youtube.com/watch?v=1SLoVY3hkQ4)
     - Server
         - [REST API](https://docs.strapi.io/dev-docs/api/rest)
+        - [Query Engine API](https://docs.strapi.io/dev-docs/api/query-engine)
     - Plugins
         - [How to build a Strapi plugin](https://www.youtube.com/watch?v=ZErV3aNdYhY)
         - [Plugin creation](https://docs.strapi.io/dev-docs/plugins/development/create-a-plugin)    
@@ -54,6 +55,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [SDK Plugin](https://github.com/strapi/sdk-plugin)
         - [How To Create and Publish Your First NPM Package](https://www.youtube.com/watch?v=xNr_OdpPFe4)
         - [Custom fields](https://docs.strapi.io/dev-docs/custom-fields)
+        - [Plugin Resources](https://strapi.io/plugin-resources)
 - E-Commerce
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)

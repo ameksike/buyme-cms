@@ -42,6 +42,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [Dynamic Zones](https://www.youtube.com/watch?v=YhEVIGzJD1Y&list=PLh0b_kWrKDf84aIbQ0mcjnfgfgUJrVjPg)
         - [How To Structure Your Landing Page Data in Strapi | Step-by-Step Tutorial](https://www.youtube.com/watch?v=npRO9IeCeN4)
         - [Visually build pages with Strapi content in Plasmic](https://www.youtube.com/watch?v=1SLoVY3hkQ4)
+        - [Design -system](https://design-system.strapi.io/?path=/docs/getting-started-welcome--docs)
     - Server
         - [REST API](https://docs.strapi.io/dev-docs/api/rest)
         - [Query Engine API](https://docs.strapi.io/dev-docs/api/query-engine)

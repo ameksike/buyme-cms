@@ -57,6 +57,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [How To Create and Publish Your First NPM Package](https://www.youtube.com/watch?v=xNr_OdpPFe4)
         - [Custom fields](https://docs.strapi.io/dev-docs/custom-fields)
         - [Plugin Resources](https://strapi.io/plugin-resources)
+        - [Plugin Demo RemoteSelect](https://github.com/dmitriy-nz/strapi-plugin-remote-select/blob/main/admin/src/components/RemoteSelect/RemoteSelect.tsx)
 - E-Commerce
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)

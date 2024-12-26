@@ -409,6 +409,9 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
     i18n: {
       localized: true;
     };

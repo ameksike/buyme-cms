@@ -410,7 +410,7 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
   };
   pluginOptions: {
     'content-manager': {
-      visible: false;
+      visible: true;
     };
     i18n: {
       localized: true;

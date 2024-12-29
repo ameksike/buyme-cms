@@ -73,7 +73,7 @@
       ],
       "default": "Other"
     },
-    "balance": {
+    "statistics": {
       "type": "customField",
       "options": {
         "fetch": {
@@ -87,23 +87,6 @@
         "ui": {
           "editable": false,
           "col": "1"
-        }
-      },
-      "customField": "plugin::virtval.virtval"
-    },
-    "Reviewer": {
-      "type": "customField",
-      "options": {
-        "fetch": {
-          "url": "https://dummyjson.com/products",
-          "map": "{\"Reviewer\": \"products.0.reviews.1.reviewerName\"}",
-          "defaults": "",
-          "body": "{}",
-          "headers": "{}",
-          "method": "GET"
-        },
-        "ui": {
-          "col": 1
         }
       },
       "customField": "plugin::virtval.virtval"

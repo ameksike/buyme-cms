@@ -1496,24 +1496,6 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    balance: Schema.Attribute.String &
-      Schema.Attribute.CustomField<
-        'plugin::virtval.virtval',
-        {
-          fetch: {
-            body: '';
-            defaults: '';
-            headers: '{\n    "X-Auth": "Bearer your_token_here",\n    "Content-Type": "application/json"\n}';
-            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit"\n}';
-            method: 'GET';
-            url: '/api/transactions/:id/balance';
-          };
-          ui: {
-            col: '1';
-            editable: false;
-          };
-        }
-      >;
     category: Schema.Attribute.Enumeration<
       [
         'Other',
@@ -1554,20 +1536,21 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<1>;
-    Reviewer: Schema.Attribute.String &
+    statistics: Schema.Attribute.String &
       Schema.Attribute.CustomField<
         'plugin::virtval.virtval',
         {
           fetch: {
-            body: '{}';
+            body: '';
             defaults: '';
-            headers: '{}';
-            map: '{"Reviewer": "products.0.reviews.1.reviewerName"}';
+            headers: '{\n    "X-Auth": "Bearer your_token_here",\n    "Content-Type": "application/json"\n}';
+            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit"\n}';
             method: 'GET';
-            url: 'https://dummyjson.com/products';
+            url: '/api/transactions/:id/balance';
           };
           ui: {
-            col: 1;
+            col: '1';
+            editable: false;
           };
         }
       >;

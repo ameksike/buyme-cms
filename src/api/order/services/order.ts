@@ -6,17 +6,7 @@
  */
 
 import { factories } from '@strapi/strapi';
-
-function fill(result) {
-    try {
-        result.profit = result.charged - result.costReal;
-        result.discount = result.cost - result.costReal;
-        return result;
-    }
-    catch (_) {
-        return result;
-    }
-}
+import { fill } from './fields';
 
 export default factories.createCoreService('api::order.order', ({ strapi }) => ({
     async find(...args) {

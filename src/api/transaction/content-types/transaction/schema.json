@@ -72,6 +72,24 @@
         "Uber"
       ],
       "default": "Other"
+    },
+    "statistics": {
+      "type": "customField",
+      "options": {
+        "fetch": {
+          "url": "/api/transactions/:id/balance",
+          "map": "{\n    \"Balance\":\"balance\",\n    \"Credit\":\"credit\",\n    \"Debit\":\"debit\"\n}",
+          "body": "",
+          "headers": "{\n    \"X-Auth\": \"Bearer your_token_here\",\n    \"Content-Type\": \"application/json\"\n}",
+          "method": "GET",
+          "defaults": ""
+        },
+        "ui": {
+          "editable": false,
+          "col": "1"
+        }
+      },
+      "customField": "plugin::virtval.virtval"
     }
   }
 }

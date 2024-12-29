@@ -409,6 +409,9 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
     i18n: {
       localized: true;
     };
@@ -958,13 +961,6 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
-    guantity: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<1>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     name: Schema.Attribute.String &
@@ -980,8 +976,21 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
         };
       }>;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    profits: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     purchase: Schema.Attribute.Relation<'manyToOne', 'api::purchase.purchase'>;
+    quantity: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<1>;
     rate: Schema.Attribute.Decimal &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1527,6 +1536,24 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<1>;
+    statistics: Schema.Attribute.String &
+      Schema.Attribute.CustomField<
+        'plugin::virtval.virtval',
+        {
+          fetch: {
+            body: '';
+            defaults: '';
+            headers: '{\n    "X-Auth": "Bearer your_token_here",\n    "Content-Type": "application/json"\n}';
+            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit"\n}';
+            method: 'GET';
+            url: '/api/transactions/:id/balance';
+          };
+          ui: {
+            col: '1';
+            editable: false;
+          };
+        }
+      >;
     type: Schema.Attribute.Enumeration<['Debit', 'Credit']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Debit'>;

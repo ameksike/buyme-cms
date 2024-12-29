@@ -46,7 +46,9 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - Server
         - [REST API](https://docs.strapi.io/dev-docs/api/rest)
         - [Query Engine API](https://docs.strapi.io/dev-docs/api/query-engine)
+        - [Document Service API](https://docs.strapi.io/dev-docs/api/document-service)
     - Plugins
+        - [Strapi Marketplace](https://market.strapi.io/submit-plugin)
         - [How to build a Strapi plugin](https://www.youtube.com/watch?v=ZErV3aNdYhY)
         - [Plugin creation](https://docs.strapi.io/dev-docs/plugins/development/create-a-plugin)    
         - [Building Plugins for Strapi v4](https://www.youtube.com/playlist?list=PL7Q0DQYATmvjd5D57P8CN0_xp_HsRd3wn)

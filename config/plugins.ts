@@ -10,6 +10,7 @@ const {
     PLUGIN_UPLOAD = "cloudinary",
     PLUGIN_KSVIRT = false,
     PLUGIN_REMOTE = false,
+    PLUGIN_VIRVAL = false
 } = process.env;
 
 const cloud = {
@@ -68,6 +69,12 @@ if (PLUGIN_KSVIRT) {
     plugins["ksvirt"] = {
         enabled: true,
         resolve: "./src/plugins/ksvirt",
+    };
+}
+
+if(PLUGIN_VIRVAL) {
+    plugins["virtval"] = {
+        enabled: true
     };
 }
 

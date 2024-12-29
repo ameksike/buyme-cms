@@ -14,7 +14,7 @@ module.exports = {
             path: '/transactions/:id/balance',
             handler: 'api::transaction.transaction.getBalanceByDoc',
             config: {
-                // auth: false,
+                auth: false,
                 policies: [],
                 middlewares: [],
             },

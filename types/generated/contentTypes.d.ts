@@ -401,6 +401,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
   collectionName: 'addresses';
   info: {
+    description: '';
     displayName: 'Address';
     pluralName: 'addresses';
     singularName: 'address';

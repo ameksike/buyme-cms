@@ -9,7 +9,8 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - npm install @strapi/provider-upload-cloudinary
 - npm install pg --save
 - npm install @strapi/plugin-graphql
-- npm install strapi-plugin-remote-select
+- npm install [strapi-plugin-remote-select](https://www.npmjs.com/package/strapi-plugin-remote-select)
+- npm install [virtval](https://www.npmjs.com/package/virtval)
 
 ## Run
 - npm run develop

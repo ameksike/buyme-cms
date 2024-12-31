@@ -68,7 +68,9 @@
           "localized": true
         }
       },
-      "type": "integer"
+      "type": "integer",
+      "default": 0,
+      "min": 0
     },
     "media": {
       "type": "media",
@@ -91,7 +93,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "note": {
       "pluginOptions": {
@@ -100,6 +103,44 @@
         }
       },
       "type": "text"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "products"
+    },
+    "quantity": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "required": true
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::supplier.supplier"
+    },
+    "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "decimal"
+    },
+    "delivery": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "datetime"
     }
   }
 }

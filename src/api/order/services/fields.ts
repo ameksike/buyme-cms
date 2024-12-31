@@ -12,21 +12,28 @@ export function roundTo(value, decimals) {
 export function fill(data: any, decimals: number = 3) {
     try {
         if (!data) return data;
-        if (!data.discount && data.costReal) {
-            data.discount = roundTo(data.cost - data.costReal, decimals);
-        }
+
         if (!data.cost) {
             (data.discount && data.costReal) && (data.cost = data.costReal - data.discount);
-            (data.costReal && !data.discount) && (data.cost = data.costReal);
-            (!data.costReal && !data.discount) && (data.cost = data.charged);
+            (data.costReal && !data.discount) && (data.cost = data.costReal ?? 0);
+            (!data.costReal && !data.discount) && (data.cost = data.charged ?? 0);
             data.cost = roundTo(data.cost, decimals);
         }
+
         if (!data.costReal) {
-            data.costReal = roundTo(data.discount ? data.cost - data.discount : data.cost, decimals);
+            data.costReal = roundTo(data.discount ? data.cost - data.discount : (data.cost ?? 0), decimals);
         }
+
+        if (!data.discount && data.costReal && data.cost) {
+            data.discount = roundTo(data.cost - data.costReal, decimals);
+        }
+
         if (!data.charged) {
-            data.charged = roundTo(data.fee ? data.cost - (data.fee + data.tax) : 0, decimals);
+            let percent = data.fee_percent ? data.cost * (data.fee_percent / 100) : 0;
+            let charged = (data.fee ?? 0) + (data.tax ?? 0) + percent;
+            data.charged = roundTo(data.cost + charged, decimals);
         }
+
         if (!data.profits) {
             data.profits = roundTo(data.charged - data.costReal, decimals);
         }

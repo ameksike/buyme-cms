@@ -5,7 +5,7 @@ module.exports = {
             path: '/transactions/user/:id/balance',
             handler: 'api::transaction.transaction.getBalanceByUser',
             config: {
-                // auth: false,
+                auth: false,
                 policies: [],
                 middlewares: [],
             },

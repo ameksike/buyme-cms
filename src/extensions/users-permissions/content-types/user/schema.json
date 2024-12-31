@@ -306,6 +306,23 @@
       "relation": "manyToMany",
       "target": "api::group.group",
       "mappedBy": "users_permissions_users"
+    },
+    "statistics": {
+      "type": "customField",
+      "options": {
+        "fetch": {
+          "url": "/api/transactions/user/:id/balance",
+          "map": "{\n    \"Balance\":\"balance\",\n    \"Credit\":\"credit\",\n    \"Debit\":\"debit\",\n    \"Order Debit\":\"orders\",\n    \"Order Count\":\"orders_count\",\n    \"Package Debit\":\"packages\",\n    \"Package Count\":\"packages_count\"\n}",
+          "defaults": "",
+          "body": "{}",
+          "headers": "{}",
+          "method": "GET"
+        },
+        "ui": {
+          "col": 1
+        }
+      },
+      "customField": "plugin::virtval.virtval"
     }
   }
 }

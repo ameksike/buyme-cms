@@ -401,6 +401,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
   collectionName: 'addresses';
   info: {
+    description: '';
     displayName: 'Address';
     pluralName: 'addresses';
     singularName: 'address';
@@ -1132,6 +1133,19 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
       }>;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    rate: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     shipping: Schema.Attribute.Relation<'manyToOne', 'api::shipping.shipping'>;
     size: Schema.Attribute.Decimal &
       Schema.Attribute.SetPluginOptions<{
@@ -1544,7 +1558,7 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
             body: '';
             defaults: '';
             headers: '{\n    "X-Auth": "Bearer your_token_here",\n    "Content-Type": "application/json"\n}';
-            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit"\n}';
+            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit",\n    "Order Debit":"orders",\n    "Order Count":"orders_count",\n    "Package Debit":"packages",\n    "Package Count":"packages_count"\n}';
             method: 'GET';
             url: '/api/transactions/:id/balance';
           };
@@ -2270,6 +2284,23 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.role'
     >;
     sex: Schema.Attribute.Enumeration<['Male', 'Female', 'Other']>;
+    statistics: Schema.Attribute.String &
+      Schema.Attribute.CustomField<
+        'plugin::virtval.virtval',
+        {
+          fetch: {
+            body: '{}';
+            defaults: '';
+            headers: '{}';
+            map: '{\n    "Balance":"balance",\n    "Credit":"credit",\n    "Debit":"debit",\n    "Order Debit":"orders",\n    "Order Count":"orders_count",\n    "Package Debit":"packages",\n    "Package Count":"packages_count"\n}';
+            method: 'GET';
+            url: '/api/transactions/user/:id/balance';
+          };
+          ui: {
+            col: 1;
+          };
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

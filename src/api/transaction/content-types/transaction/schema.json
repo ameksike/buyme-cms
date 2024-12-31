@@ -78,7 +78,7 @@
       "options": {
         "fetch": {
           "url": "/api/transactions/:id/balance",
-          "map": "{\n    \"Balance\":\"balance\",\n    \"Credit\":\"credit\",\n    \"Debit\":\"debit\"\n}",
+          "map": "{\n    \"Balance\":\"balance\",\n    \"Credit\":\"credit\",\n    \"Debit\":\"debit\",\n    \"Order Debit\":\"orders\",\n    \"Order Count\":\"orders_count\",\n    \"Package Debit\":\"packages\",\n    \"Package Count\":\"packages_count\"\n}",
           "body": "",
           "headers": "{\n    \"X-Auth\": \"Bearer your_token_here\",\n    \"Content-Type\": \"application/json\"\n}",
           "method": "GET",

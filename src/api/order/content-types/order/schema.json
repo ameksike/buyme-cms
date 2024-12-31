@@ -30,7 +30,9 @@
           "localized": true
         }
       },
-      "type": "decimal"
+      "type": "decimal",
+      "default": 0,
+      "min": 0
     },
     "currency": {
       "pluginOptions": {
@@ -54,7 +56,8 @@
         }
       },
       "type": "decimal",
-      "default": 1
+      "default": 1,
+      "min": 0
     },
     "cost": {
       "pluginOptions": {
@@ -62,7 +65,9 @@
           "localized": true
         }
       },
-      "type": "decimal"
+      "type": "decimal",
+      "default": 0,
+      "min": 0
     },
     "costReal": {
       "pluginOptions": {
@@ -70,7 +75,9 @@
           "localized": true
         }
       },
-      "type": "decimal"
+      "type": "decimal",
+      "default": 0,
+      "min": 0
     },
     "discount": {
       "pluginOptions": {
@@ -88,7 +95,8 @@
         }
       },
       "type": "decimal",
-      "default": 0
+      "default": 0,
+      "min": 0
     },
     "profits": {
       "pluginOptions": {
@@ -96,62 +104,8 @@
           "localized": true
         }
       },
-      "type": "decimal"
-    },
-    "quantity": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "default": 1
-    },
-    "weight": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "decimal"
-    },
-    "weightUnit": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "Ounces (oz)",
-        "Pounds (lb)",
-        "Grams (g)",
-        "Kilograms (kg)"
-      ],
-      "default": "Pounds (lb)"
-    },
-    "size": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "decimal"
-    },
-    "sizeUnit": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "Inches (in)",
-        "Feet (ft)",
-        "Centimeters (cm)",
-        "Meters (m)"
-      ],
-      "default": "Centimeters (cm)"
+      "type": "decimal",
+      "default": 0
     },
     "note": {
       "pluginOptions": {
@@ -160,19 +114,6 @@
         }
       },
       "type": "text"
-    },
-    "url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "product": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product.product"
     },
     "supplier": {
       "type": "relation",
@@ -202,7 +143,9 @@
         }
       },
       "type": "decimal",
-      "default": 0
+      "default": 0,
+      "min": 0,
+      "required": false
     },
     "code": {
       "pluginOptions": {
@@ -223,6 +166,23 @@
         }
       },
       "component": "shared.state"
+    },
+    "fee_percent": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "required": false
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "order"
     }
   }
 }

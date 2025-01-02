@@ -1448,6 +1448,28 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    statistics: Schema.Attribute.String &
+      Schema.Attribute.CustomField<
+        'plugin::virtval.virtval',
+        {
+          fetch: {
+            body: '{}';
+            defaults: '';
+            headers: '{}';
+            map: '{\n    "Total": "balance",\n    "Total Package Debit": "package_debit",\n    "Total Package Count": "packages_count",\n    "Transaction Credit": "credit_total",\n    "Transaction Debit": "debit_total"\n}';
+            method: 'GET';
+            url: '/api/shippings/:id/balance';
+          };
+          ui: {
+            col: 1;
+          };
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     transactions: Schema.Attribute.Component<'shared.ops', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

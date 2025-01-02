@@ -85,6 +85,28 @@
         }
       },
       "component": "shared.ops"
+    },
+    "statistics": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "customField",
+      "options": {
+        "fetch": {
+          "url": "/api/shippings/:id/balance",
+          "map": "{\n    \"Total\": \"balance\",\n    \"Total Package Debit\": \"package_debit\",\n    \"Total Package Count\": \"packages_count\",\n    \"Transaction Credit\": \"credit_total\",\n    \"Transaction Debit\": \"debit_total\"\n}",
+          "defaults": "",
+          "body": "{}",
+          "headers": "{}",
+          "method": "GET"
+        },
+        "ui": {
+          "col": 1
+        }
+      },
+      "customField": "plugin::virtval.virtval"
     }
   }
 }

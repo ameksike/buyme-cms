@@ -16,15 +16,6 @@
     }
   },
   "attributes": {
-    "guantity": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "default": 1
-    },
     "weight": {
       "pluginOptions": {
         "i18n": {
@@ -89,11 +80,6 @@
       },
       "type": "string"
     },
-    "product": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product.product"
-    },
     "note": {
       "pluginOptions": {
         "i18n": {
@@ -101,14 +87,6 @@
         }
       },
       "type": "text"
-    },
-    "url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
     },
     "shipping": {
       "type": "relation",

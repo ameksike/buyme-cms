@@ -1,0 +1,141 @@
+[
+  {
+    "id": "1735773224413",
+    "name": "order",
+    "tooltip": true,
+    "legend": true,
+    "xaxis": [
+      {
+        "key": "month"
+      }
+    ],
+    "yaxis": [
+      {
+        "type": "area",
+        "key": "total_charged",
+        "stroke": "#caca9d",
+        "fill": "#caca9d"
+      },
+      {
+        "type": "bar",
+        "key": "total_cost_real",
+        "stroke": "#8884d8",
+        "fill": "#8884d8"
+      },
+      {
+        "type": "line",
+        "active": {
+          "r": 8
+        },
+        "key": "total_profits",
+        "stroke": "#82ca9d",
+        "fill": "#82ca9d"
+      }
+    ],
+    "label": "Order History ",
+    "query": "    WITH monthly_totals AS (\n        SELECT\n            DATE_TRUNC('month', o.published_at) AS month,\n            COALESCE(SUM(o.charged * o.rate), 0) AS total_charged,\n            COALESCE(SUM(o.cost_real * o.rate), 0) AS total_cost_real,\n            COALESCE(SUM(o.profits * o.rate), 0) AS total_profits\n        FROM\n            public.orders AS o\n        INNER JOIN\n            public.orders_user_lnk AS ou\n            ON ou.order_id = o.id\n        INNER JOIN\n            public.up_users AS u\n            ON u.id = ou.user_id\n        WHERE\n            o.published_at IS NOT NULL\n            AND EXTRACT(YEAR FROM o.published_at) = :year\n        GROUP BY\n            DATE_TRUNC('month', o.published_at)\n    )\n    SELECT\n        TO_CHAR(month, 'YYYY-MM') AS month,\n        total_charged,\n        total_cost_real,\n        total_profits\n    FROM\n        monthly_totals\n    ORDER BY\n        month;",
+    "vars": [
+      {
+        "key": "year",
+        "defaults": "2024",
+        "component": "select",
+        "value": [
+          {
+            "key": "2023",
+            "value": "2023"
+          },
+          {
+            "key": "2024",
+            "value": "2024"
+          },
+          {
+            "key": "2025",
+            "value": "2025"
+          },
+          {
+            "key": "2026",
+            "value": "2026"
+          },
+          {
+            "key": "2027",
+            "value": "2027"
+          },
+          {
+            "key": "2028",
+            "value": "2028"
+          },
+          {
+            "key": "2029",
+            "value": "2029"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1735854711217",
+    "tooltip": true,
+    "legend": true,
+    "xaxis": [
+      {
+        "key": "month"
+      }
+    ],
+    "yaxis": [
+      {
+        "type": "line",
+        "key": "shipping_count",
+        "stroke": "#8884d8",
+        "fill": "#8884d8"
+      },
+      {
+        "type": "line",
+        "active": {
+          "r": 8
+        },
+        "key": "total_balance",
+        "stroke": "#82ca9d",
+        "fill": "#82ca9d"
+      }
+    ],
+    "label": "Shipping History",
+    "query": "   WITH package_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(p.charged * p.rate), 0) AS package_total, \n            COUNT(*) AS packages_count\n        FROM public.packages AS p\n        INNER JOIN public.packages_shipping_lnk AS ps \n            ON ps.package_id = p.id AND p.published_at IS NOT NULL\n        INNER JOIN public.shippings AS s \n            ON s.id = ps.shipping_id AND s.published_at IS NOT NULL\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    ),\n    transaction_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(CASE WHEN t.type = 'Credit' THEN t.value * t.rate ELSE 0 END), 0) AS credit_total,\n            COALESCE(SUM(CASE WHEN t.type = 'Debit' THEN t.value * t.rate ELSE 0 END), 0) AS debit_total\n        FROM public.shippings AS s\n        INNER JOIN public.shippings_cmps AS sh \n            ON sh.entity_id = s.id AND sh.field = 'transactions' AND s.published_at IS NOT NULL\n        INNER JOIN public.components_shared_ops AS t \n            ON t.id = sh.cmp_id\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    )\n    SELECT \n        TO_CHAR(DATE_TRUNC('month', s.published_at), 'YYYY-MM') AS month,\n        COUNT(DISTINCT s.id) AS shipping_count,\n        COALESCE(SUM(td.credit_total), 0) - COALESCE(SUM(td.debit_total), 0) - COALESCE(SUM(pd.package_total), 0) AS total_balance\n    FROM public.shippings AS s\n    LEFT JOIN package_data AS pd ON pd.shipping_id = s.id\n    LEFT JOIN transaction_data AS td ON td.shipping_id = s.id\n    WHERE s.published_at IS NOT NULL AND EXTRACT(YEAR FROM s.published_at) = :year\n    GROUP BY DATE_TRUNC('month', s.published_at)\n    ORDER BY DATE_TRUNC('month', s.published_at);",
+    "vars": [
+      {
+        "key": "year",
+        "defaults": "2025",
+        "component": "select",
+        "value": [
+          {
+            "key": "2023",
+            "value": "2023"
+          },
+          {
+            "key": "2024",
+            "value": "2024"
+          },
+          {
+            "key": "2025",
+            "value": "2025"
+          },
+          {
+            "key": "2026",
+            "value": "2026"
+          },
+          {
+            "key": "2027",
+            "value": "2027"
+          },
+          {
+            "key": "2028",
+            "value": "2028"
+          },
+          {
+            "key": "2029",
+            "value": "2029"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -8,7 +8,7 @@ const {
     CF_ENDPOINT,
     CF_BUCKET,
     PLUGIN_UPLOAD = "cloudinary",
-    PLUGIN_KSVIRT = false,
+    PLUGIN_STPDASHBOAD = "config/charts.json",
     PLUGIN_REMOTE = false,
     PLUGIN_VIRVAL = false
 } = process.env;
@@ -65,14 +65,14 @@ if (upload) {
     plugins["upload"] = upload;
 }
 
-if (PLUGIN_KSVIRT) {
-    plugins["ksvirt"] = {
+if (PLUGIN_STPDASHBOAD) {
+    plugins["strapi-plugin-dashboard"] = {
         enabled: true,
-        resolve: "./src/plugins/ksvirt",
+        // resolve: "../strapi-plugin-dashboard",
     };
 }
 
-if(PLUGIN_VIRVAL) {
+if (PLUGIN_VIRVAL) {
     plugins["virtval"] = {
         enabled: true
     };

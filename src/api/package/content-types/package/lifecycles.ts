@@ -1,11 +1,11 @@
 import { fill } from "../../services/fields";
 
 export default {
-    beforeCreate(event) {
-        const { data, where, select, populate } = event.params;
+    beforeUpdate(event) {
+        const { data } = event.params;
         event.params.data = fill(data);
     },
-    beforeUpdate(event) {
+    beforeCreate(event) {
         const { data } = event.params;
         event.params.data = fill(data);
     },

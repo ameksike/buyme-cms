@@ -10,8 +10,8 @@ import { fill } from './fields';
 
 export default factories.createCoreService('api::order.order', ({ strapi }) => ({
     async find(...args) {
-        const { results, pagination } = await super.find(...args);
-        results.forEach(result => fill(result));
+        let { results, pagination } = await super.find(...args);
+        results = results.map(result => fill(result));
         return { results, pagination };
     },
     async findOne(documentId, params) {

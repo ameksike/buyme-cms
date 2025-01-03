@@ -85,8 +85,12 @@
       {
         "type": "line",
         "key": "shipping_count",
-        "stroke": "#8884d8",
-        "fill": "#8884d8"
+        "stroke": "#8884d8"
+      },
+      {
+        "type": "line",
+        "key": "weight_total",
+        "stroke": "#d811d8"
       },
       {
         "type": "line",
@@ -94,12 +98,11 @@
           "r": 8
         },
         "key": "total_balance",
-        "stroke": "#82ca9d",
-        "fill": "#82ca9d"
+        "stroke": "#82ca9d"
       }
     ],
     "label": "Shipping History",
-    "query": "   WITH package_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(p.charged * p.rate), 0) AS package_total, \n            COUNT(*) AS packages_count\n        FROM public.packages AS p\n        INNER JOIN public.packages_shipping_lnk AS ps \n            ON ps.package_id = p.id AND p.published_at IS NOT NULL\n        INNER JOIN public.shippings AS s \n            ON s.id = ps.shipping_id AND s.published_at IS NOT NULL\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    ),\n    transaction_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(CASE WHEN t.type = 'Credit' THEN t.value * t.rate ELSE 0 END), 0) AS credit_total,\n            COALESCE(SUM(CASE WHEN t.type = 'Debit' THEN t.value * t.rate ELSE 0 END), 0) AS debit_total\n        FROM public.shippings AS s\n        INNER JOIN public.shippings_cmps AS sh \n            ON sh.entity_id = s.id AND sh.field = 'transactions' AND s.published_at IS NOT NULL\n        INNER JOIN public.components_shared_ops AS t \n            ON t.id = sh.cmp_id\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    )\n    SELECT \n        TO_CHAR(DATE_TRUNC('month', s.published_at), 'YYYY-MM') AS month,\n        COUNT(DISTINCT s.id) AS shipping_count,\n        COALESCE(SUM(td.credit_total), 0) - COALESCE(SUM(td.debit_total), 0) - COALESCE(SUM(pd.package_total), 0) AS total_balance\n    FROM public.shippings AS s\n    LEFT JOIN package_data AS pd ON pd.shipping_id = s.id\n    LEFT JOIN transaction_data AS td ON td.shipping_id = s.id\n    WHERE s.published_at IS NOT NULL AND EXTRACT(YEAR FROM s.published_at) = :year\n    GROUP BY DATE_TRUNC('month', s.published_at)\n    ORDER BY DATE_TRUNC('month', s.published_at);",
+    "query": "   WITH package_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(p.charged * p.rate), 0) AS package_total, \n            COALESCE(SUM(p.weight), 0) AS weight_total,\n            COUNT(*) AS packages_count\n        FROM public.packages AS p\n        INNER JOIN public.packages_shipping_lnk AS ps \n            ON ps.package_id = p.id AND p.published_at IS NOT NULL\n        INNER JOIN public.shippings AS s \n            ON s.id = ps.shipping_id AND s.published_at IS NOT NULL\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    ),\n    transaction_data AS (\n        SELECT \n            s.id AS shipping_id,\n            COALESCE(SUM(CASE WHEN t.type = 'Credit' THEN t.value * t.rate ELSE 0 END), 0) AS credit_total,\n            COALESCE(SUM(CASE WHEN t.type = 'Debit' THEN t.value * t.rate ELSE 0 END), 0) AS debit_total\n        FROM public.shippings AS s\n        INNER JOIN public.shippings_cmps AS sh \n            ON sh.entity_id = s.id AND sh.field = 'transactions' AND s.published_at IS NOT NULL\n        INNER JOIN public.components_shared_ops AS t \n            ON t.id = sh.cmp_id\n        WHERE EXTRACT(YEAR FROM s.published_at) = :year\n        GROUP BY s.id\n    )\n    SELECT \n        TO_CHAR(DATE_TRUNC('month', s.published_at), 'YYYY-MM') AS month,\n        COUNT(DISTINCT s.id) AS shipping_count,\n        COALESCE(SUM(pd.weight_total), 0) AS weight_total,\n        COALESCE(SUM(td.credit_total), 0) - COALESCE(SUM(td.debit_total), 0) - COALESCE(SUM(pd.package_total), 0) AS total_balance\n    FROM public.shippings AS s\n    LEFT JOIN package_data AS pd ON pd.shipping_id = s.id\n    LEFT JOIN transaction_data AS td ON td.shipping_id = s.id\n    WHERE s.published_at IS NOT NULL AND EXTRACT(YEAR FROM s.published_at) = :year\n    GROUP BY DATE_TRUNC('month', s.published_at)\n    ORDER BY DATE_TRUNC('month', s.published_at);",
     "vars": [
       {
         "key": "year",

@@ -69,6 +69,7 @@ const shippingByYear = `
         SELECT 
             s.id AS shipping_id,
             COALESCE(SUM(p.charged * p.rate), 0) AS package_total, 
+            COALESCE(SUM(p.weight), 0) AS weight_total,
             COUNT(*) AS packages_count
         FROM public.packages AS p
         INNER JOIN public.packages_shipping_lnk AS ps 
@@ -94,6 +95,7 @@ const shippingByYear = `
     SELECT 
         TO_CHAR(DATE_TRUNC('month', s.published_at), 'YYYY-MM') AS month,
         COUNT(DISTINCT s.id) AS shipping_count,
+        COALESCE(SUM(pd.weight_total), 0) AS weight_total,
         COALESCE(SUM(td.credit_total), 0) - COALESCE(SUM(td.debit_total), 0) - COALESCE(SUM(pd.package_total), 0) AS total_balance
     FROM public.shippings AS s
     LEFT JOIN package_data AS pd ON pd.shipping_id = s.id

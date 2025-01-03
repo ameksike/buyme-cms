@@ -12,6 +12,7 @@ export default factories.createCoreService('api::shipping.shipping', ({ strapi }
                     SELECT 
                         s.id AS shipping_id,
                         COALESCE(SUM(p.charged * p.rate), 0) AS package_total, 
+                        COALESCE(SUM(p.weight), 0) AS total_weight,
                         COUNT(*) AS packages_count
                     FROM public.packages AS p
                     INNER JOIN public.packages_shipping_lnk AS ps 
@@ -39,6 +40,7 @@ export default factories.createCoreService('api::shipping.shipping', ({ strapi }
                     COALESCE(pd.packages_count, 0) AS packages_count,
                     COALESCE(td.credit_total, 0) AS credit_total,
                     COALESCE(td.debit_total, 0) AS debit_total,
+                    COALESCE(pd.total_weight, 0) AS weight_total,
                     COALESCE(td.credit_total, 0) - COALESCE(td.debit_total, 0) - COALESCE(pd.package_total, 0) AS balance
                 FROM public.shippings AS s
                 LEFT JOIN package_data AS pd ON pd.shipping_id = s.id

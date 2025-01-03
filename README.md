@@ -10,7 +10,8 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 - npm install pg --save
 - npm install @strapi/plugin-graphql
 - npm install [strapi-plugin-remote-select](https://www.npmjs.com/package/strapi-plugin-remote-select)
-- npm install [virtval](https://www.npmjs.com/package/virtval)
+- npm install [strapi-plugin-dashboard](https://github.com/ameksike/strapi-plugin-dashboard)
+- npm install [strapi-plugin-virtval](https://www.npmjs.com/package/virtval)
 
 ## Run
 - npm run develop
@@ -69,28 +70,18 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - [Build and Deploy a React Admin Dashboard With Real time Data, Charts, Events, Kanban, CRM, and More](https://www.youtube.com/watch?v=6a3Dz8gwjdg)
 
 
-### Overwriting 
+### Overwriting API
 
 File: `src\api\order\services\order.ts`
 
 ```ts
 import { factories } from '@strapi/strapi';
-
-function fill(result) {
-    try {
-        result.profit = result.charged - result.costReal;
-        result.discount = result.cost - result.costReal;
-        return result;
-    }
-    catch (_) {
-        return result;
-    }
-}
+import { fill } from './fields';
 
 export default factories.createCoreService('api::order.order', ({ strapi }) => ({
     async find(...args) {
-        const { results, pagination } = await super.find(...args);
-        results.forEach(result => fill(result));
+        let { results, pagination } = await super.find(...args);
+        results = results.map(result => fill(result));
         return { results, pagination };
     },
     async findOne(documentId, params) {
@@ -100,6 +91,40 @@ export default factories.createCoreService('api::order.order', ({ strapi }) => (
 }));
 ```
 
+File: `src\api\order\services\fields.ts`
+```ts
+export function fill(result) {
+    try {
+        result.profit = result.charged - result.costReal;
+        result.discount = result.cost - result.costReal;
+        return result;
+    }
+    catch (_) {
+        return result;
+    }
+}
+```
+
+### Overwriting Admin
+
+File: `src\api\order\content-types\order\lifecycles.ts`
+```ts
+import { fill } from "../../services/fields";
+
+export default {
+    beforeCreate(event) {
+        const { data, where, select, populate } = event.params;
+        event.params.data = fill(data);
+    },
+    afterFindOne(event) {
+        const { params, result } = event;
+        if (strapi.admin && params.populate) {
+            params.populate.push('*');
+            event.result = fill(result);
+        }
+    },
+};
+```
 
 ### `develop`
 

@@ -1456,7 +1456,7 @@ export interface ApiShippingShipping extends Struct.CollectionTypeSchema {
             body: '{}';
             defaults: '';
             headers: '{}';
-            map: '{\n    "Total": "balance",\n    "Total Package Debit": "package_debit",\n    "Total Package Count": "packages_count",\n    "Transaction Credit": "credit_total",\n    "Transaction Debit": "debit_total"\n}';
+            map: '{\n    "Total": "balance",\n    "Total Package Debit": "package_debit",\n    "Total Package Count": "packages_count",\n    "Total Weight": "weight_total",\n    "Transaction Credit": "credit_total",\n    "Transaction Debit": "debit_total"\n}';
             method: 'GET';
             url: '/api/shippings/:id/balance';
           };

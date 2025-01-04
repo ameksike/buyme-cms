@@ -45,6 +45,8 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [How To Structure Your Landing Page Data in Strapi | Step-by-Step Tutorial](https://www.youtube.com/watch?v=npRO9IeCeN4)
         - [Visually build pages with Strapi content in Plasmic](https://www.youtube.com/watch?v=1SLoVY3hkQ4)
         - [Design System Components](https://design-system.strapi.io/?path=/docs/getting-started-welcome--docs)
+        - State
+            - [Why Signals Are Better Than React Hooks](https://www.youtube.com/watch?v=SO8lBVWF2Y8) 
     - Server
         - [REST API](https://docs.strapi.io/dev-docs/api/rest)
         - [Query Engine API](https://docs.strapi.io/dev-docs/api/query-engine)
@@ -63,13 +65,16 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
         - [Custom fields](https://docs.strapi.io/dev-docs/custom-fields)
         - [Plugin Resources](https://strapi.io/plugin-resources)
         - [Plugin Demo RemoteSelect](https://github.com/dmitriy-nz/strapi-plugin-remote-select/blob/main/admin/src/components/RemoteSelect/RemoteSelect.tsx)
-- E-Commerce
+    - Auth
+        - [How To Set Up Next Auth 5 in Next.js 15 [ project code included ]](https://www.youtube.com/watch?v=xHQQ5I7E_H8)
+        - [Implementación de autenticación con Next.js 15 y Strapi 5 Headless CMS [Código incluido]](https://www.youtube.com/watch?v=PL-IBGTwjxw)
+
+- Others
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)
     - [Full Stack Ecommerce Store With Admin Dashboard From Scratch - Next.js, Prisma, Stripe, Tailwind](https://www.youtube.com/watch?v=iqrgggs0Qk0)
     - [Build and Deploy a React Admin Dashboard With Real time Data, Charts, Events, Kanban, CRM, and More](https://www.youtube.com/watch?v=6a3Dz8gwjdg)
-
-
+    - [Build a Full Stack Next.js App with Google Calendar - TypeScript, Drizzle, ShadCN, Tailwind, Neon](https://www.youtube.com/watch?v=0Oacr8VrnNk)
 ### Overwriting API
 
 File: `src\api\order\services\order.ts`

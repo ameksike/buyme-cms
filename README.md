@@ -15,9 +15,11 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 
 ## Run
 - npm run develop
-- GET http://localhost:1337/graphql
-- GET http://localhost:1337/admin
-- GET http://localhost:1337/api/categories
+- GET [localhost/graphql](http://localhost:1337/graphql)
+- GET [localhost/admin](http://localhost:1337/admin)
+- GET [localhost/api/categories](http://localhost:1337/api/categories)
+- GET [Neon Project Dashboard](https://console.neon.tech/app/projects)
+- GET [Render Project Dashboard](https://dashboard.render.com/)
 
 ## References 
 - [NVM](https://github.com/coreybutler/nvm-windows/releases)

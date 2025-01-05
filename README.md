@@ -74,6 +74,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
     - [How to create a Neon database backup](https://simplebackups.com/blog/how-to-create-a-neon-database-backup/)
     - [Migrate data from Postgres with pg_dump and pg_restore](https://neon.tech/docs/import/migrate-from-postgres)
     - [Backups in Neon](https://neon.tech/docs/manage/backups)
+    - [Simplebackups Tool: Automate & trust your PostgreSQL backups](https://simplebackups.com/pricing/)
 - Others
     - [Create Login and Registration Form in Reactjs and Strapi Step By Step for Beginners](https://www.youtube.com/watch?v=rqVGovgDLc4&list=PLWfXLyKWUGIK8Vh8sVwJol_bDDvRj7tNW)
     - [Crea un Ecommerce desde Cero: Guía Completa con NextJS, React, Tailwind, Shadcn, Strapi y Stripe 🚀](https://www.youtube.com/watch?v=TToPJy1kTAw)

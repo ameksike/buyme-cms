@@ -53,7 +53,7 @@
       "target": "plugin::users-permissions.user"
     },
     "rate": {
-      "type": "decimal",
+      "type": "float",
       "default": 1,
       "min": 1
     },

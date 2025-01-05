@@ -1026,7 +1026,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     purchase: Schema.Attribute.Relation<'manyToOne', 'api::purchase.purchase'>;
-    rate: Schema.Attribute.Decimal &
+    rate: Schema.Attribute.Float &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1135,7 +1135,7 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    rate: Schema.Attribute.Decimal &
+    rate: Schema.Attribute.Float &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1596,7 +1596,7 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'DEB-01'>;
     note: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
-    rate: Schema.Attribute.Decimal &
+    rate: Schema.Attribute.Float &
       Schema.Attribute.SetMinMax<
         {
           min: 1;

@@ -16,10 +16,16 @@
         "Blocked",
         "Prepared",
         "Processed",
+        "Refund",
         "Sent",
         "Received",
         "Ready",
-        "Delivered"
+        "Paid",
+        "Delivered",
+        "Confirmed",
+        "Canceled",
+        "Denied",
+        "Complaint"
       ],
       "default": "Requested",
       "required": true

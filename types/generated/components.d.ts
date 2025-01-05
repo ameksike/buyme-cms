@@ -133,10 +133,16 @@ export interface SharedState extends Struct.ComponentSchema {
         'Blocked',
         'Prepared',
         'Processed',
+        'Refund',
         'Sent',
         'Received',
         'Ready',
+        'Paid',
         'Delivered',
+        'Confirmed',
+        'Canceled',
+        'Denied',
+        'Complaint',
       ]
     > &
       Schema.Attribute.Required &

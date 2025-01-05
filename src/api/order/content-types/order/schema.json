@@ -55,7 +55,7 @@
           "localized": true
         }
       },
-      "type": "decimal",
+      "type": "float",
       "default": 1,
       "min": 0
     },
